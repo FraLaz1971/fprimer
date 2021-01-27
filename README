@@ -1,8 +1,8 @@
 #######################################
 # simple fortran 77 example programs
 #######################################
-# sum1   ---> compute the sum of the
 #######################################
+# sum1   ---> compute the sum of the
 # first n integers selected with step s
 #
 # inpdat ---> compute the average of
