@@ -39,8 +39,8 @@ c read step value from stdin
 !         write(*,300) 'n of iterations = ', n
 !         write(*,300) 'step = ', s
 !         write(*,200) 'Final sum = ', sum
-          call report(n,s,sum)          
 c          call freport(n,s,sum)           
+          call freport(n,s,sum)           
 c define line of output format
 100		 format (A3,I2,A6,I4)
 200      format (A12,I4)
@@ -48,7 +48,7 @@ c define line of output format
 
 	contains
 c all called subroutines here	
-	subroutine report(n,s,sum)
+	subroutine report
         integer integer n, s, sum
         write(*,*) 'n of iterations = ', n
         write(*,*) 'step = ', s
@@ -62,10 +62,10 @@ c all called subroutines here
             write(10,*) 'step = ', s
             write(10,*) 'Final sum = ', sum
         close(10)
-        goto 999
+            write(*,*) 'results output to file results.txt'
+            goto 999
 899      write(*,*) 'ERROR IN WRITING FILE'
-999         write(*,*) 'results output to file results.txt'
-	end subroutine
+999	end subroutine
 
 	end program
 	

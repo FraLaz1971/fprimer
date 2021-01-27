@@ -2,6 +2,9 @@
 # sum1   ---> compute the sum of the
 # first n integers selected with step s
 #
+# sumf   ---> same as sum1, but saves
+# output to file
+#
 # inpdat ---> compute the average of
 # coordinates in a 3D array of random
 # points with max. 1000 elements
@@ -21,10 +24,13 @@ DEXT = .csv
 SHELL= bash
 S= 10
 
-all: sum1 inpdat
+all: sum1 sumf inpdat
 
 sum1: sum1.f
 	$(F77) sum1.f -o sum1
+
+sumf: sumf.f
+	$(F77) sumf.f -o sumf
 
 inpdat: inpdat.f randpoints$(DEXT)
 	$(F77)	inpdat.f -o inpdat
@@ -36,4 +42,6 @@ randpoints$(DEXT):
 .PHONY: clean all
 
 clean:
-	$(RM) sum1 inpdat randpoints.csv
+	$(RM) sum1 sumf inpdat randpoints.csv inpar.txt results.txt
+
+

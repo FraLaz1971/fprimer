@@ -5,6 +5,9 @@
 # sum1   ---> compute the sum of the
 # first n integers selected with step s
 #
+# sumf   ---> same as sum1, but saves
+# output to file
+#
 # inpdat ---> compute the average of
 # coordinates in a 3D array of random
 # points with max. 1000 elements
@@ -60,3 +63,11 @@ make sum1
 make inpdat
 # to run
 .\inpdat
+#
+./sumf < inpar.txt
+# if you want to see each
+# iteration printed for debug
+# just put
+debug = 1
+at line 10 in sum1.f (or in sumf.f)
+
