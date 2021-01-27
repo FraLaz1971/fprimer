@@ -5,8 +5,8 @@ S=$1
 echo $S > randpoints.csv
 for i in $(eval echo {1..$S}) 
 do
-	x=$(echo "100*$RANDOM/32768"|bc -l)
-	y=$(echo "100*$RANDOM/32768"|bc -l)
-	z=$(echo "100*$RANDOM/32768"|bc -l)
-	printf "%2.6f, %2.6f, %2.6f\n" $x $y $z 
+	x=$(echo "100*$RANDOM/32768"|bc)
+	y=$(echo "100*$RANDOM/32768"|bc)
+	z=$(echo "100*$RANDOM/32768"|bc)
+	printf "%f,%f,%f\n" $x $y $z 
 done >> randpoints.csv

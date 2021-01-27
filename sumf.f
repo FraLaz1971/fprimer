@@ -36,10 +36,6 @@ c read step value from stdin
                 write(*,100) 'i =', i, ' sum =', sum	
 			end if		
 50 		continue
-!         write(*,300) 'n of iterations = ', n
-!         write(*,300) 'step = ', s
-!         write(*,200) 'Final sum = ', sum
-c          call freport(n,s,sum)           
           call freport(n,s,sum)           
 c define line of output format
 100		 format (A3,I2,A6,I4)
@@ -57,7 +53,9 @@ c all called subroutines here
 	
 	subroutine freport(n,s,sum)
         integer integer n, s, sum
-        open(10, FILE='results.txt', ERR=899)
+        open(10, FILE='results.txt', ACCESS='SEQUENTIAL'
+     1   , STATUS='NEW'
+     2   , FORM='UNFORMATTED',ERR=899)
             write(10,*) 'n of iterations = ', n
             write(10,*) 'step = ', s
             write(10,*) 'Final sum = ', sum
@@ -68,5 +66,3 @@ c all called subroutines here
 999	end subroutine
 
 	end program
-	
-c ACCESS='SEQUENTIAL',

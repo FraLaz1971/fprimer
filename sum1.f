@@ -64,8 +64,7 @@ c all called subroutines here
         close(10)
         goto 999
 899      write(*,*) 'ERROR IN WRITING FILE'
-999         write(*,*) 'results output to file results.txt'
-	end subroutine
+999	end subroutine
 
 	end program
 	

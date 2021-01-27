@@ -18,9 +18,9 @@ c Read the number of points
 c loop over the data points
 		do 10 i= 1, n
 			read(u,100) x(i), y(i), z(i)
-c			write(*,*) x(i), y(i), z(i)
+			write(*,*) x(i), y(i), z(i)
 10 		enddo
-100 		format (3(F10.6))
+100 		format (3(f10.4))
 c Close the file
 		close (u)
 c calculate average of x,y,z data points
@@ -30,9 +30,9 @@ c calculate average of x,y,z data points
 			sumz = z(i)+sumz
 20 		enddo
 		write(*,*) 'read points: ',n
-		write(*,'(A,F10.6)') 'avg x=',sumx/n
-		write(*,'(A,F10.6)') 'avg y=',sumy/n
-		write(*,'(A,F10.6)') 'avg z=',sumz/n
+		write(*,*) 'avg x=',sumx/n
+		write(*,*) 'avg y=',sumy/n
+		write(*,*) 'avg z=',sumz/n
 9999 		write (*,*) 'Program terminated. Bye.'
 	end
 

@@ -22,7 +22,7 @@ EEXT =
 OEXT = .o
 DEXT = .csv
 SHELL= bash
-S= 10
+S= 100
 
 all: sum1 sumf inpdat
 
@@ -35,7 +35,7 @@ sumf: sumf.f
 inpdat: inpdat.f randpoints$(DEXT)
 	$(F77)	inpdat.f -o inpdat
 	
-randpoints$(DEXT):
+randpoints$(DEXT): randpoints.sh
 	$(SHELL) randpoints.sh $(S)
 
 	
