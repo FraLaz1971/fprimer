@@ -1,7 +1,7 @@
 	program inpdat
 c
 c This program reads n points from a data file and stores them in
-c 3 arrays x, y, z.
+c 3 arrays x(), y(), z().
 c
 		integer nmax, u
 		real sumx, sumy, sumz
