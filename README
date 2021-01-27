@@ -1,0 +1,62 @@
+#######################################
+# simple fortran 77 example programs
+#######################################
+# sum1   ---> compute the sum of the
+#######################################
+# first n integers selected with step s
+#
+# inpdat ---> compute the average of
+# coordinates in a 3D array of random
+# points with max. 1000 elements
+# contained in the file randpoints.csv
+#
+# randpoints ---> create the ascii
+# file randpoints.csv input for inpdat
+# its first line contain the size S of
+# the arrays, the rest coordinates
+# x,y,z of 3D points in S lines
+#######################################
+# to run these programs a fortran77 compiler, 
+# GNU make and a bash shell is needed 
+# (msys+mingw gfortran on MS win is ok)
+# may be adapted to use other shell
+# interpreters.
+sum1.f
+# to compile:
+make sum1
+# to run on Linux/MacOS
+./sum1
+# to run on MS win / FreeDOS cmd shell
+.\sum1
+
+### IMPORTANT: 
+# from now on the instructions will be
+# given only for the bash shell
+
+# to create the ascii file
+# randpoints.csv
+# sum1 will prompt the user
+# to insert the number of iterations n
+# and the step on the integers succession s
+# the input data may be given by the user
+# by stdin redirection and putting the values
+# s and n in 2 lines of a input data file
+# opening a text editor such kate or nano
+# and saving values in two different lines
+# e.g. 
+# nano inpar.txt
+# edit the file and save
+# cat inpar.txt
+25
+3
+./sum1 < inpar.txt
+# using stdin redirection it's possible
+# to give input both interactively
+# and from file.
+#--------------------
+# inpdat.f
+#--------------------
+# to compile
+make inpdat
+# to run
+.\inpdat
