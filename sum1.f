@@ -4,9 +4,32 @@ c| of a succession with step s of
 c| n increasing integers, took
 c| in input from the user
 cccccccccccccccccccccccccccccccccc
+c	contains
+c all called subroutines here	
+	subroutine report(n,s,sum)
+        integer n, s, sum
+        write(*,*) 'n of iterations = ', n
+        write(*,*) 'step = ', s
+        write(*,*) 'Final sum = ', sum
+	end 
+	
+	subroutine freport(n,s,sum)
+        integer  n, s, sum
+        open(10, FILE='results.txt', ERR=899)
+            write(10,*) 'n of iterations = ', n
+            write(10,*) 'step = ', s
+            write(10,*) 'Final sum = ', sum
+        close(10)
+        goto 999
+899      write(*,*) 'ERROR IN WRITING FILE'
+999	end
+
+	
+c ACCESS='SEQUENTIAL',
+
 	program sum1
-		integer i, n, s, sum, debug
-		sum = 0
+		integer i, n, s, mysum, debug
+		mysum = 0
 		debug = 0
 c read number of iteration from stdin
 10		write(*,*) 'please enter n. of iterations (1-99)'
@@ -31,41 +54,19 @@ c read step value from stdin
 		end if
 
 		do 50 i = 1, n, s
-			sum = sum + i
+			mysum = mysum + i
 			if (debug.gt.0) then 
-                write(*,100) 'i =', i, ' sum =', sum	
+                write(*,100) 'i =', i, ' sum =', mysum	
 			end if		
 50 		continue
-!         write(*,300) 'n of iterations = ', n
-!         write(*,300) 'step = ', s
-!         write(*,200) 'Final sum = ', sum
-          call report(n,s,sum)          
-c          call freport(n,s,sum)           
+c         write(*,300) 'n of iterations = ', n
+c         write(*,300) 'step = ', s
+c         write(*,200) 'Final sum = ', mysum
+          call report(n,s,mysum)          
+c          call freport(n,s,mysum)           
 c define line of output format
 100		 format (A3,I2,A6,I4)
 200      format (A12,I4)
 300      format (A,I2)
+	end
 
-	contains
-c all called subroutines here	
-	subroutine report(n,s,sum)
-        integer integer n, s, sum
-        write(*,*) 'n of iterations = ', n
-        write(*,*) 'step = ', s
-        write(*,*) 'Final sum = ', sum
-	end subroutine
-	
-	subroutine freport(n,s,sum)
-        integer integer n, s, sum
-        open(10, FILE='results.txt', ERR=899)
-            write(10,*) 'n of iterations = ', n
-            write(10,*) 'step = ', s
-            write(10,*) 'Final sum = ', sum
-        close(10)
-        goto 999
-899      write(*,*) 'ERROR IN WRITING FILE'
-999	end subroutine
-
-	end program
-	
-c ACCESS='SEQUENTIAL',

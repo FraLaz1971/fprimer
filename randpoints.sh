@@ -8,5 +8,5 @@ do
 	x=$(echo "100*$RANDOM/32768"|bc)
 	y=$(echo "100*$RANDOM/32768"|bc)
 	z=$(echo "100*$RANDOM/32768"|bc)
-	printf "%f,%f,%f\n" $x $y $z 
+	printf "%g,%g,%g\n" $x $y $z 
 done >> randpoints.csv

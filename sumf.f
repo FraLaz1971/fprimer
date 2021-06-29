@@ -4,6 +4,29 @@ c| of a succession with step s of
 c| n increasing integers, took
 c| in input from the user
 cccccccccccccccccccccccccccccccccc
+c all called subroutines here	
+	subroutine report
+        integer n, s, sum
+        write(*,*) 'n of iterations = ', n
+        write(*,*) 'step = ', s
+        write(*,*) 'Final sum = ', sum
+	end 
+	
+	subroutine freport(n,s,sum)
+        integer  n, s, sum
+        open(10, FILE='results.txt', ACCESS='SEQUENTIAL'
+     1   ,ERR=899)
+            write(10,100) 'n of iterations = ', n
+            write(10,100) 'step = ', s
+            write(10,100) 'Final sum = ', sum
+        close(10)
+            write(*,*) 'results output to file results.txt'
+            goto 999
+100	FORMAT(A16,I10)
+899      write(*,*) 'ERROR IN WRITING FILE'
+999	end
+
+C here starts the main program
 	program sum1
 		integer i, n, s, sum, debug
 		sum = 0
@@ -42,27 +65,5 @@ c define line of output format
 200      format (A12,I4)
 300      format (A,I2)
 
-	contains
-c all called subroutines here	
-	subroutine report
-        integer integer n, s, sum
-        write(*,*) 'n of iterations = ', n
-        write(*,*) 'step = ', s
-        write(*,*) 'Final sum = ', sum
-	end subroutine
-	
-	subroutine freport(n,s,sum)
-        integer integer n, s, sum
-        open(10, FILE='results.txt', ACCESS='SEQUENTIAL'
-     1   , STATUS='NEW'
-     2   , FORM='UNFORMATTED',ERR=899)
-            write(10,*) 'n of iterations = ', n
-            write(10,*) 'step = ', s
-            write(10,*) 'Final sum = ', sum
-        close(10)
-            write(*,*) 'results output to file results.txt'
-            goto 999
-899      write(*,*) 'ERROR IN WRITING FILE'
-999	end subroutine
 
-	end program
+	end
