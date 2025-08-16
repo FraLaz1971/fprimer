@@ -27,13 +27,13 @@ S= 100
 all: sum1 sumf inpdat
 
 sum1: sum1.f
-	$(F77) sum1.f -o sum1
+	$(F77) sum1.f -o $@
 
 sumf: sumf.f
-	$(F77) sumf.f -o sumf
+	$(F77) sumf.f -o $@
 
 inpdat: inpdat.f randpoints$(DEXT)
-	$(F77)	inpdat.f -o inpdat
+	$(F77)	inpdat.f -o $@
 	
 randpoints$(DEXT): randpoints.sh
 	$(SHELL) randpoints.sh $(S)
