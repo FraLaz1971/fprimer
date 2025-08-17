@@ -1,44 +1,44 @@
-	program inpdat
-c
-c This program reads n points from a data file and stores them in
-c 3 arrays x(), y(), z().
-c
-		integer nmax, u
-		real sumx, sumy, sumz
-		parameter (nmax=1000, u=20)
-		real x(nmax), y(nmax), z(nmax)
-		data sumx,sumy,sumz /0,0,0/
-c Open the data file
-		open (u, FILE='randpoints.csv', STATUS='OLD',ERR=999)
-c Read the number of points
-		read(u,*) n
-		if (n.GT.nmax) then
-		write(*,*) 'Error: n = ', n, 
-     &		'is larger than nmax =', nmax
-		goto 9999
-		endif
-c loop over the data points
-		do 10 i= 1, n
-			read(u,100) x(i), y(i), z(i)
-			write(*,*) x(i), y(i), z(i)
-10 		continue
+	PROGRAM INPDAT
+C
+C THIS PROGRAM READS N POINTS FROM A DATA FILE AND STORES THEM IN
+C 3 ARRAYS X(), Y(), Z().
+C
+		INTEGER NMAX, U, N, I
+		REAL SUMX, SUMY, SUMZ
+		PARAMETER (NMAX=1000, U=20)
+		REAL X(NMAX), Y(NMAX), Z(NMAX)
+		DATA SUMX,SUMY,SUMZ /0,0,0/
+C OPEN THE DATA FILE
+		OPEN (U, FILE='randpoints.csv', STATUS='OLD',ERR=999)
+C READ THE NUMBER OF POINTS
+		READ(U,*) N
+		IF (N.GT.NMAX) THEN
+		WRITE(*,*) 'ERROR: N = ', N, 
+     +		'IS LARGER THAN NMAX =', NMAX
+		GOTO 9999
+		ENDIF
+C LOOP OVER THE DATA POINTS
+		DO 10 I= 1, N
+			READ(U,100) X(I), Y(I), Z(I)
+			WRITE(*,100) X(I), Y(I), Z(I)
+10 		CONTINUE
 
-100 		format (3(f10.4))
-c Close the file
-		close (u)
-c calculate average of x,y,z data points
-		do 20 i= 1, n
-			sumx = x(i)+sumx
-			sumy = y(i)+sumy
-			sumz = z(i)+sumz
-20 		continue
-		write(*,*) 'read points: ',n
-		write(*,*) 'avg x=',sumx/n
-		write(*,*) 'avg y=',sumy/n
-		write(*,*) 'avg z=',sumz/n
-		goto 10000		
-999 	write (*,*) 'Error in reading the input file randpoints.csv'
-        write (*,*) 'is the file present/accessible?'
-9999 		write (*,*) 'Program terminated. Bye.'
-10000	end
+100 		FORMAT (3(F10.4))
+C CLOSE THE FILE
+		CLOSE (U)
+C CALCULATE AVERAGE OF X,Y,Z DATA POINTS
+		DO 20 I= 1, N
+			SUMX = X(I)+SUMX
+			SUMY = Y(I)+SUMY
+			SUMZ = Z(I)+SUMZ
+20 		CONTINUE
+		WRITE(*,*) 'READ POINTS: ',N
+		WRITE(*,*) 'AVG X=',SUMX/N
+		WRITE(*,*) 'AVG Y=',SUMY/N
+		WRITE(*,*) 'AVG Z=',SUMZ/N
+		GOTO 10000		
+999 	WRITE (*,*) 'ERROR IN READING THE INPUT FILE randpoints.csv'
+        WRITE (*,*) 'IS THE FILE PRESENT/ACCESSIBLE?'
+9999 		WRITE (*,*) 'PROGRAM TERMINATED. BYE.'
+10000	END
 

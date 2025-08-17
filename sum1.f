@@ -1,72 +1,71 @@
-cccccccccccccccccccccccccccccccccc
-c| sum1.f : compute the sum
-c| of a succession with step s of 
-c| n increasing integers, took
-c| in input from the user
-cccccccccccccccccccccccccccccccccc
-c	contains
-c all called subroutines here	
-	subroutine report(n,s,sum)
-        integer n, s, sum
-        write(*,*) 'n of iterations = ', n
-        write(*,*) 'step = ', s
-        write(*,*) 'Final sum = ', sum
-	end 
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C| SUM1.F : COMPUTE THE SUM
+C| OF A SUCCESSION WITH STEP S OF 
+C| N INCREASING INTEGERS, TOOK
+C| IN INPUT FROM THE USER
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C	CONTAINS
+C ALL CALLED SUBROUTINES HERE	
+	SUBROUTINE REPORT(N,S,SUM)
+        INTEGER N, S, SUM
+        WRITE(*,300) 'N OF ITERATIONS = ', N
+        WRITE(*,300) 'STEP = ', S
+        WRITE(*,200) 'FINAL SUM = ', SUM
+200      FORMAT (A12,I4)
+300      FORMAT (A,I2)
+	END 
 	
-	subroutine freport(n,s,sum)
-        integer  n, s, sum
-        open(10, FILE='results.txt', ERR=899)
-            write(10,*) 'n of iterations = ', n
-            write(10,*) 'step = ', s
-            write(10,*) 'Final sum = ', sum
-        close(10)
-        goto 999
-899      write(*,*) 'ERROR IN WRITING FILE'
-999	end
+	SUBROUTINE FREPORT(N,S,SUM)
+        INTEGER  N, S, SUM
+        OPEN(10, FILE='RESULTS.TXT', ERR=899)
+            WRITE(10,300) 'N OF ITERATIONS = ', N
+            WRITE(10,300) 'STEP = ', S
+            WRITE(10,200) 'FINAL SUM = ', SUM
+        CLOSE(10)
+        GOTO 999
+200      FORMAT (A12,I4)
+300      FORMAT (A,I2)
+899      WRITE(*,*) 'ERROR IN WRITING FILE'
+999	END
 
 	
-c ACCESS='SEQUENTIAL',
+C ACCESS='SEQUENTIAL',
 
-	program sum1
-		integer i, n, s, mysum, debug
-		mysum = 0
-		debug = 0
-c read number of iteration from stdin
-10		write(*,*) 'please enter n. of iterations (1-99)'
-		read(*,*) n
-		if ((n.ge.100) .or. (n.lt.1)) then
-            write(*,*) 'only integers in the interval (1-99)'
-            write(*,*) 'are allowed'
-            goto 10
-		end if
-20		write(*,*) 'please enter step value (1-99)'
-		read(*,*) s
-c read step value from stdin		
-		if ( (s.ge.100) .or. (s.lt.1) ) then
-            write(*,*) 'only integers in the interval (1-99)'
-            write(*,*) 'are allowed'
-            goto 20
-		end if
-		if (s.ge.n)  then
-            write(*,*) 'the step must be greater of '
-            write(*,*) 'number of iterations'
-            goto 20
-		end if
+	PROGRAM SUM1
+		IMPLICIT NONE
+		INTEGER I, N, S, MYSUM, DEBUG
+		MYSUM = 0
+		DEBUG = 0
+C READ NUMBER OF ITERATION FROM STDIN
+10		WRITE(*,*) 'PLEASE ENTER N. OF ITERATIONS (1-99)'
+		READ(*,*) N
+		IF ((N.GE.100) .OR. (N.LT.1)) THEN
+            WRITE(*,*) 'ONLY INTEGERS IN THE INTERVAL (1-99)'
+            WRITE(*,*) 'ARE ALLOWED'
+            GOTO 10
+		END IF
+20		WRITE(*,*) 'PLEASE ENTER STEP VALUE (1-99)'
+		READ(*,*) S
+C READ STEP VALUE FROM STDIN		
+		IF ( (S.GE.100) .OR. (S.LT.1) ) THEN
+            WRITE(*,*) 'ONLY INTEGERS IN THE INTERVAL (1-99)'
+            WRITE(*,*) 'ARE ALLOWED'
+            GOTO 20
+		END IF
+		IF (S.GE.N)  THEN
+            WRITE(*,*) 'THE STEP MUST BE GREATER OF '
+            WRITE(*,*) 'NUMBER OF ITERATIONS'
+            GOTO 20
+		END IF
 
-		do 50 i = 1, n, s
-			mysum = mysum + i
-			if (debug.gt.0) then 
-                write(*,100) 'i =', i, ' sum =', mysum	
-			end if		
-50 		continue
-c         write(*,300) 'n of iterations = ', n
-c         write(*,300) 'step = ', s
-c         write(*,200) 'Final sum = ', mysum
-          call report(n,s,mysum)          
-c          call freport(n,s,mysum)           
-c define line of output format
-100		 format (A3,I2,A6,I4)
-200      format (A12,I4)
-300      format (A,I2)
-	end
+		DO 50 I = 1, N, S
+			MYSUM = MYSUM + I
+			IF (DEBUG.GT.0) THEN 
+                WRITE(*,100) 'I =', I, ' SUM =', MYSUM	
+			END IF		
+50 		CONTINUE
+          CALL REPORT(N,S,MYSUM)          
+C DEFINE LINE OF OUTPUT FORMAT
+100		 FORMAT (A3,I2,A6,I4)
+	END
 

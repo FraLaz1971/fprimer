@@ -69,5 +69,5 @@ make inpdat
 # iteration printed for debug
 # just put
 debug = 1
-at line 10 in sum1.f (or in sumf.f)
+#at line 10 in sum1.f (or in sumf.f)
 
