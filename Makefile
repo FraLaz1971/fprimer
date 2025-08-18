@@ -24,16 +24,19 @@ DEXT = .csv
 SHELL= bash
 S= 100
 
-all: sum1 sumf inpdat
+all: sum1 sumf inpdat stfun
 
 sum1: sum1.f
-	$(F77) sum1.f -o $@
+	$(F77) $< -o $@
 
 sumf: sumf.f
-	$(F77) sumf.f -o $@
+	$(F77) $< -o $@
 
 inpdat: inpdat.f randpoints$(DEXT)
-	$(F77)	inpdat.f -o $@
+	$(F77)	$< -o $@
+
+stfun: stfun.f
+	$(F77)	$< -o $@
 	
 randpoints$(DEXT): randpoints.sh
 	$(SHELL) randpoints.sh $(S)
@@ -42,6 +45,6 @@ randpoints$(DEXT): randpoints.sh
 .PHONY: clean all
 
 clean:
-	$(RM) sum1 sumf inpdat randpoints.csv inpar.txt results.txt
+	$(RM) sum1 sumf inpdat stfun randpoints.csv inpar.txt results.txt
 
 

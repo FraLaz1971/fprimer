@@ -1,0 +1,12 @@
+      PROGRAM STFUN
+        IMPLICIT NONE
+        REAL RADIUS, VOLUME, PI, R, SPHERE
+        PARAMETER ( PI=3.14159 )
+        SPHERE ( R ) = 4.0 * PI * (R**3) / 3.0
+        PRINT *,'COMPUTING VOLUME OF THE SPHERE'
+        PRINT *,'GIVE RADIUS'
+        READ *, RADIUS
+        VOLUME = SPHERE( RADIUS )
+        PRINT *,'VOLUME OF THE SPHERE IS ', VOLUME
+        STOP
+      END
